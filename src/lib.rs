@@ -4,7 +4,7 @@ use fluvio_smartstream::{smartstream, Result, Record};
 #[smartstream(filter)]
 pub fn filter(record: &Record) -> Result<bool> {
     let string = std::str::from_utf8(record.value.as_ref())?;
-    string.contains('a')
+    Ok(string.contains('a'))
 }
 {% else if smartstream-type == "map" %}
 use fluvio_smartstream::{smartstream, Result, Record, RecordData};
