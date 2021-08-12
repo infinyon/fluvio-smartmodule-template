@@ -8,6 +8,9 @@ $ cargo install cargo-generate
 $ cargo generate --git https://github.com/infinyon/fluvio-smartstream-template
 ```
 
+> **Note**: To compile a SmartStream, you will need to install the `wasm32-unknown-unknown`
+> target by running `rustup target add wasm32-unknown-unknown`.
+
 ## About SmartStreams
 
 Fluvio SmartStreams are custom plugins that can be used to manipulate
