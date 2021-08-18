@@ -1,5 +1,5 @@
 [placeholders.smartstream-type]
 type = "string"
 prompt = "Which type of SmartStream would you like?"
-choices = ["filter", "map"]
+choices = ["filter", "map", "aggregate"]
 default = "filter"
