@@ -8,6 +8,7 @@ pub fn filter(record: &Record) -> Result<bool> {
 }
 {% elsif smartstream-type == "map" %}
 use fluvio_smartstream::{smartstream, Result, Record, RecordData};
+
 #[smartstream(map)]
 pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
     let key = record.key.clone();
@@ -17,6 +18,27 @@ pub fn map(record: &Record) -> Result<(Option<RecordData>, RecordData)> {
     let value = (int * 2).to_string();
 
     Ok((key, value.into()))
+}
+{% elsif smartstream-type == "array-map" %}
+use fluvio_smartstream::{smartstream, Result, Record, RecordData};
+
+#[smartstream(array_map)]
+pub fn array_map(record: &Record) -> Result<Vec<(Option<RecordData>, RecordData)>> {
+    // Deserialize a JSON array with any kind of values inside
+    let array = serde_json::from_slice::<Vec<serde_json::Value>>(record.value.as_ref())?;
+
+    // Convert each JSON value from the array back into a JSON string
+    let strings: Vec<String> = array
+        .into_iter()
+        .map(|value| serde_json::to_string(&value))
+        .collect::<core::result::Result<_, _>>()?;
+
+    // Create one record from each JSON string to send
+    let kvs: Vec<(Option<RecordData>, RecordData)> = strings
+        .into_iter()
+        .map(|s| (None, RecordData::from(s)))
+        .collect();
+    Ok(kvs)
 }
 {% elsif smartstream-type == "aggregate" %}
 use fluvio_smartstream::{smartstream, Result, Record, RecordData};
