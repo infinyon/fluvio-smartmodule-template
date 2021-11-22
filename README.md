@@ -1,5 +1,11 @@
 # Fluvio SmartStreams
 
+> **NOTE**: This project has been relocated to [`fluvio-smartmodule-template`][1]. This
+> repository has been archived so that `cargo-generate` will still work with old links,
+> however, all future projects should use [`fluvio-smartmodule-template`][1] instead.
+
+[1]: https://github.com/infinyon/fluvio-smartmodule-template
+
 This repository is a [`cargo-generate`] template for getting started
 with writing Fluvio SmartStreams. To use it, run the following:
 
