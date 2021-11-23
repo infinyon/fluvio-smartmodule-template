@@ -29,9 +29,9 @@ stream as it is processed, and must return true or false to determine
 whether the record should be kept (true) or discarded (false).
 
 ```rust
-use fluvio_smartstream::{smartstream, SimpleRecord};
+use fluvio_smartmodule::{smartmodule, SimpleRecord};
 
-#[smartstream(filter)]
+#[smartmodule(filter)]
 pub fn my_filter(record: &SimpleRecord) -> bool {
     let value = String::from_utf8_lossy(record.value.as_ref());
     value.contains('z')
@@ -50,5 +50,5 @@ topic to send data to.
 ```bash
 $ fluvio topic create smartmodule-test
 $ cargo build --release
-$ fluvio consume smartmodule-test -B --smart-stream="target/wasm32-unknown-unknown/release/{{project-name}}"
+$ fluvio consume smartmodule-test -B --{{smartmodule-type}}="target/wasm32-unknown-unknown/release/{{project-name}}"
 ```
