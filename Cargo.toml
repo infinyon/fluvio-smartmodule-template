@@ -9,7 +9,7 @@ crate-type = ['cdylib']
 
 [dependencies]
 fluvio-smartmodule = { version = "0.1" }
-{% if smartstream-type == "array-map" %}
+{% if smartmodule-type == "array-map" %}
 serde_json = "1"
 {% endif %}
 

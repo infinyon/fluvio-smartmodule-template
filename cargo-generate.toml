@@ -1,5 +1,5 @@
-[placeholders.smartstream-type]
+[placeholders.smartmodule-type]
 type = "string"
-prompt = "Which type of SmartStream would you like?"
+prompt = "Which type of SmartModule would you like?"
 choices = ["filter", "map", "filter-map", "array-map", "aggregate"]
 default = "filter"
