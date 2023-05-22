@@ -21,3 +21,6 @@ members = ["."]
 
 [profile.release]
 lto = true
+strip = "symbols"
+panic = "abort"
+codegen-units = 1
